@@ -21,6 +21,8 @@ void UBasicWebSocket::Initialise(const FString PlayerNameIn, const FString Playe
     // NOTE: If we don't set this header, then Glitch will not accept the websocket connection.
     TMap<FString, FString> UpgradeHeaders;
     UpgradeHeaders.Add(TEXT("User-Agent"), FGenericPlatformHttp::GetDefaultUserAgent());
+    UpgradeHeaders.Add(TEXT("flyio-debug"), TEXT("doit"));
+    
     
     UE_LOG(MiniWebSocket, Verbose, TEXT("About to create WebSocket connection to %s via %s"), *ServerURL, *ServerProtocol);
     Socket = FWebSocketsModule::Get().CreateWebSocket(ServerURL, ServerProtocol, UpgradeHeaders);
